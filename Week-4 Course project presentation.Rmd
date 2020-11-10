@@ -1,0 +1,57 @@
+---
+title: "Predicting Miles per Gallon"
+author: "Daniel Arturo Lopez Sanchez"
+date: "11/10/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+This is the Developing Data Products Final Project. The main idea is to predict the mileage of a car, given 4 predictors.This predictors are:
+
+- Number of cylinders
+- Gross horsepower
+- whether if the car's transmission type is automatic or manual
+- Weight
+
+You'll need to input these values and the result will be the predicted miles per gallon.
+
+## Summary of the model
+
+```{r model, echo=FALSE }
+mtcars$cyl <- factor(mtcars$cyl)
+mtcars$am <- factor(mtcars$am)
+model1 <- lm(formula = mpg~cyl+hp+wt+am, data = mtcars)
+summary(model1)
+```
+
+## Summary of the variables
+
+Miles per gallon, horsepower and weight are numeric continuous variables. Number of cylinders and transmission type(am) are factors.
+```{r mtcars, echo = FALSE}
+mtcars$cyl <- factor(mtcars$cyl)
+mtcars$am <- factor(mtcars$am)
+summary(mtcars[,c(1,2,4,6,9)])
+```
+
+## Interaction between variables
+
+In this the upper panel of a scatter plot matrix. We can see some trends in the 4 predictors interacting with mpg.
+```{r pairs, echo=FALSE}
+pairs(mtcars[,c(1,2,4,6,9)], pch=19, lower.panel = NULL)
+```
+
+## Link to shiny app
+
+https://daniellopezsnchz.shinyapps.io/predicting_mpg_model/
+
+
+
+
+
+
+
